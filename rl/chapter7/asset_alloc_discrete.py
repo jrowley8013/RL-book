@@ -61,7 +61,7 @@ class AssetAllocDiscrete:
 
                 return SampledDistribution(
                     sampler=sr_sampler_func,
-                    expectation_samples=1000
+                    expectation_samples=100
                 )
 
             def actions(self, wealth: NonTerminal[float]) -> Sequence[float]:
@@ -122,7 +122,7 @@ class AssetAllocDiscrete:
             self.get_states_distribution(i)
         ) for i in range(self.time_steps())]
 
-        num_state_samples: int = 300
+        num_state_samples: int = 200
         error_tolerance: float = 1e-6
 
         return back_opt_qvf(
@@ -166,8 +166,8 @@ class AssetAllocDiscrete:
             self.get_states_distribution(i)
         ) for i in range(self.time_steps())]
 
-        num_state_samples: int = 300
-        error_tolerance: float = 1e-8
+        num_state_samples: int = 100
+        error_tolerance: float = 1e-6
 
         return back_opt_vf_and_policy(
             mdp_f0_mu_triples=mdp_f0_mu_triples,
